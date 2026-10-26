@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #e6f7fd;
+  --color-primary-100: #ccefFC;
+  --color-primary-200: #99dff9;
+  --color-primary-500: #00AEEF;
+  --color-primary-600: #0099D8;
+  --color-primary-700: #0085C7;
+}
+
+/* Palette from the UNICEF 40 lockup (the cyan block, its grey panel and
+   dark-grey type) and the Republic of Rwanda flag, whose blue, yellow and
+   green run under the "40 years" mark. */
+:root {
+  --brand:      #00AEEF;
+  --brand2:     #0077B6;
+  --brand-tint: rgba(0, 174, 239, 0.1);
+  --rw-blue:    #00A1DE;
+  --rw-yellow:  #FAD201;
+  --rw-green:   #20603D;
+  --ink:        #1F2A33;
+  --light:      #F3F5F7;
+  --white:      #FFFFFF;
+  --text:       #2D3A45;
+  --muted:      #66737E;
+  --border:     #DFE5EA;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body), sans-serif;
+  color: var(--text);
+  background: var(--light);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---- Minimal surface + control primitives ---------------------------- */
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+/* Selectable cards: flat at rest, a quiet lift on hover */
+.cat-card {
+  border-color: var(--border);
+  background: var(--white);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.cat-card:hover {
+  border-color: #BFD3DE;
+  box-shadow: 0 10px 24px -14px rgba(31, 42, 51, 0.35);
+  transform: translateY(-2px);
+}
+
+/* White text on UNICEF cyan is below 4.5:1, so buttons use the deeper blue
+   and keep the cyan for accents. */
+.btn-primary {
+  background: var(--brand2);
+  transition: background-color 0.18s ease;
+}
+
+.btn-primary:hover {
+  background: #005E91;
+}
+
+/* The Rwanda flag colours, as under the "40 years" mark. */
+.flag-strip {
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--rw-blue) 0 33.33%,
+    var(--rw-yellow) 33.33% 66.66%,
+    var(--rw-green) 66.66% 100%
+  );
+}
+
+/* Horizontal strips (section tabs) that scroll without a visible
+   scrollbar. */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
