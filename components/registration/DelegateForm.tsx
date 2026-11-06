@@ -2,6 +2,7 @@
 
 import { useState, useCallback, type ReactNode } from 'react';
 import SearchableSelect from '@/components/SearchableSelect';
+import ImageInput from '@/components/registration/ImageInput';
 import {
   isInputShown,
   shownValues,
@@ -21,8 +22,8 @@ const CONSENT_ERROR =
 // example), so those switch to the searchable variant.
 const SEARCHABLE_THRESHOLD = 12;
 
-// Radios, textareas, checkbox groups and notes take the full row.
-const FULL_WIDTH_TYPES = [10, 15, 16, 17];
+// Images, radios, textareas, checkbox groups and notes take the full row.
+const FULL_WIDTH_TYPES = [7, 10, 15, 16, 17];
 
 interface DelegateFormProps {
   groups: FormInputGroup[];
@@ -265,6 +266,24 @@ export default function DelegateForm({
         return textInput('date');
       case 5:
         return textInput('email');
+      case 7:
+        return (
+          <>
+            <ImageInput
+              id={input.inputcode}
+              value={inputValue as string}
+              hasError={hasError}
+              onChange={(v) => handleInputChange(input.inputcode, v)}
+              onError={(message) =>
+                setFieldErrors((prev) => ({
+                  ...prev,
+                  [input.inputcode]: message,
+                }))
+              }
+            />
+            {errorText}
+          </>
+        );
       case 8:
         return textInput('number');
       case 10:

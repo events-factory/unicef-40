@@ -42,6 +42,7 @@ export interface FormInputGroup {
 }
 
 export interface FormValues {
+  // A newly chosen image is a base64 data URL, sent like any other answer.
   [key: string]: string | string[];
 }
 
@@ -53,6 +54,7 @@ export const LAST_NAME_INPUT = 'input_id_35129';
 
 // Checkbox groups are stored as one comma-joined string.
 const CHECKBOX_TYPE = 16;
+export const IMAGE_TYPE = 7;
 
 export function decodeHtml(str: string): string {
   return str
