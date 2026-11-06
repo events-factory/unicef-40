@@ -18,6 +18,7 @@ import {
   SMARTEVENT_API,
   EMAIL_INPUT,
   FIRST_NAME_INPUT,
+  IMAGE_TYPE,
   LAST_NAME_INPUT,
   buildDelegateForm,
   confirmationEmailSent,
@@ -220,12 +221,16 @@ function UpdateRegistration() {
     setSubmitting(true);
     try {
       // Questions now hidden go out blank, so a representative named earlier
-      // is cleared when the invitee changes their answer.
-      const form = buildDelegateForm(
-        registration.data,
-        values,
-        Object.keys(RSVP_RULES),
-      );
+      // is cleared when the invitee changes their answer. The same goes for a
+      // saved photo they removed.
+      const imageInputs = registration.data
+        .flatMap((group) => group.inputs)
+        .filter(({ input }) => input.inputtype.id === IMAGE_TYPE)
+        .map(({ input }) => input.inputcode);
+      const form = buildDelegateForm(registration.data, values, [
+        ...Object.keys(RSVP_RULES),
+        ...imageInputs,
+      ]);
       form.append('ticket_id', String(record.ticket_id));
       form.append('attendence_type', record.attendence_type || 'PHYSICAL');
       form.append('accompanied', record.accompanied || 'NO');
