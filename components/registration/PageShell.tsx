@@ -61,6 +61,51 @@ export function ErrorPanel({
   );
 }
 
+export function ClosedPanel({
+  title,
+  message,
+}: {
+  title: string;
+  message: string;
+}) {
+  return (
+    <div className="flex justify-center">
+      <div className="panel p-8 text-center max-w-lg w-full">
+        <div
+          className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+          style={{ background: 'var(--brand-tint)' }}
+        >
+          <svg
+            className="w-10 h-10"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            style={{ color: 'var(--brand2)' }}
+            aria-hidden
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <h2
+          className="text-2xl font-bold mb-4"
+          style={{
+            color: 'var(--ink)',
+            fontFamily: 'var(--font-heading),sans-serif',
+          }}
+        >
+          {title}
+        </h2>
+        <p style={{ color: 'var(--muted)' }}>{message}</p>
+      </div>
+    </div>
+  );
+}
+
 interface SuccessPanelProps {
   title: string;
   message: string;
