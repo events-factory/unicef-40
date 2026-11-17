@@ -5,6 +5,7 @@ import DelegateForm from '@/components/registration/DelegateForm';
 import PaymentSummary from '@/components/registration/PaymentSummary';
 import { useCardPayment } from '@/components/registration/useCardPayment';
 import {
+  ClosedPanel,
   ErrorPanel,
   LoadingPanel,
   PageShell,
@@ -15,7 +16,7 @@ import {
   parseFeeAmount,
   extractCurrency,
 } from '@/lib/payment';
-import { EVENT, RSVP, RSVP_RULES } from '@/lib/event';
+import { EVENT, REGISTRATION, RSVP, RSVP_RULES } from '@/lib/event';
 import {
   SMARTEVENT_API,
   EMAIL_INPUT,
@@ -35,6 +36,20 @@ import {
 type Attendance = 'PHYSICAL' | 'VIRTUAL';
 
 export default function RegistrationPage() {
+  if (!REGISTRATION.open) {
+    return (
+      <PageShell eyebrow={EVENT.name} title="Confirm your attendance">
+        <ClosedPanel
+          title={REGISTRATION.closedTitle}
+          message={REGISTRATION.closedMessage}
+        />
+      </PageShell>
+    );
+  }
+  return <RegistrationForm />;
+}
+
+function RegistrationForm() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [eventType, setEventType] = useState<'HYBRID' | Attendance | null>(

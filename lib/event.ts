@@ -12,6 +12,15 @@ export const EVENT = {
   ministryName: 'Ministry of Gender and Family Promotion',
 };
 
+// Set `open` back to true to reopen public sign-ups. While closed,
+// /registration shows the message below instead of its form. Invitees can
+// still change their RSVP through their emailed /registration/update link.
+export const REGISTRATION = {
+  open: false,
+  closedTitle: 'Registration is now closed',
+  closedMessage: `Thank you for your interest in the ${EVENT.name}. Registration has now closed. If you have already confirmed your attendance, your registration stands and we look forward to welcoming you at the ${EVENT.venue} on ${EVENT.date}.`,
+};
+
 // The "Your RSVP" group in SmartEvent's delegate form. An invitee who will
 // not attend can name a representative, saved on the invitee's own record.
 export const RSVP = {
