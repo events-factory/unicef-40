@@ -21,6 +21,12 @@ export const REGISTRATION = {
   closedMessage: `Thank you for your interest in the ${EVENT.name}. Registration has now closed. If you have already confirmed your attendance, your registration stands and we look forward to welcoming you at the ${EVENT.venue} on ${EVENT.date}.`,
 };
 
+// /staff stays open while public registration is closed, and offers only
+// these SmartEvent categories: ORGANIZER, PROTOCOL and TECHNICAL TEAM.
+export const STAFF = {
+  categoryIds: [209, 210, 211],
+};
+
 // The "Your RSVP" group in SmartEvent's delegate form. An invitee who will
 // not attend can name a representative, saved on the invitee's own record.
 export const RSVP = {
